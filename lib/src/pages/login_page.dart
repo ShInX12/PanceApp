@@ -113,7 +113,7 @@ class LoginPage extends StatelessWidget {
       color: Colors.green,
       textColor: Colors.white,
       onPressed: () {
-        Navigator.pushNamed(context, 'base');
+        Navigator.pushReplacementNamed(context, 'base');
       },
     );
   }

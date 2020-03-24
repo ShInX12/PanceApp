@@ -14,7 +14,7 @@ class Progreso {
     bool nivel1;
     bool nivel2;
     bool nivel3;
-    String userId;
+    String usuarioId;
 
     Progreso({
         this.id,
@@ -22,7 +22,7 @@ class Progreso {
         this.nivel1,
         this.nivel2,
         this.nivel3,
-        this.userId,
+        this.usuarioId,
     });
 
     factory Progreso.fromJson(Map<String, dynamic> json) => Progreso(
@@ -31,7 +31,7 @@ class Progreso {
         nivel1: json["nivel_1"],
         nivel2: json["nivel_2"],
         nivel3: json["nivel_3"],
-        userId: json["user_id"],
+        usuarioId: json["usuario_id"],
     );
 
     Map<String, dynamic> toJson() => {
@@ -40,6 +40,6 @@ class Progreso {
         "nivel_1": nivel1,
         "nivel_2": nivel2,
         "nivel_3": nivel3,
-        "user_id": userId,
+        "usuario_id": usuarioId,
     };
 }

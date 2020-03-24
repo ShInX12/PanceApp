@@ -34,7 +34,7 @@ class GamePage extends StatelessWidget {
         ),
         CardWidget(
           title: "Rompecabezas",
-          image: NetworkImage('https://lh3.googleusercontent.com/proxy/6cx373pXUDMdsS7cCkTC3LheWjuBfT_eZyD_Lwk0PxM78yJpxWQOv2SOYddcuGa83bU6RU5uaORgH13Am9NdijX7JDfA4pe7K5CHOhNK'),
+          image: NetworkImage('https://images7.alphacoders.com/419/thumb-1920-419726.jpg'),
           page: "rompecabezas_page",
         ),
       ],
