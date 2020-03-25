@@ -51,7 +51,7 @@ class LoginPage extends StatelessWidget {
                     // padding: EdgeInsets.symmetric(vertical: 10.0),
                     width: 100.0,
                     height: 100.0,
-                    child: Text('Bienvenido a Pance App')),
+                    child: Text('(logo)')),
                 SizedBox(height: 30.0),
                 _crearEmail(),
                 SizedBox(height: 30.0),
@@ -109,7 +109,7 @@ class LoginPage extends StatelessWidget {
         child: Text('Ingresar'),
       ),
       shape: StadiumBorder(),
-      elevation: 0.0,
+      elevation: 1.0,
       color: Colors.green,
       textColor: Colors.white,
       onPressed: () {

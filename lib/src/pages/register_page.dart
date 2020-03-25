@@ -107,11 +107,11 @@ class _RegisterPageState extends State<RegisterPage> {
         child: Text('Registrarse'),
       ),
       shape: StadiumBorder(),
-      elevation: 0.0,
+      elevation: 1.0,
       color: Colors.green,
       textColor: Colors.white,
       onPressed: () {
-        print("Soy un $email");
+        
       },
     );
   }

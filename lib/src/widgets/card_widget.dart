@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 
 class CardWidget extends StatelessWidget {
   final String title;
-  final NetworkImage image;
+  final AssetImage image;
   final String page;
 
   CardWidget({this.title, this.image, this.page});
@@ -18,7 +18,7 @@ class CardWidget extends StatelessWidget {
         children: <Widget>[
           FadeInImage(
             image: image,
-            placeholder: NetworkImage('https://www.verdevalle.com/img/loading.gif'),
+            placeholder: AssetImage('assets/img/loading.jpg'),
             fadeOutDuration: Duration(milliseconds: 200),
             height: 130.0,
             width: double.infinity,

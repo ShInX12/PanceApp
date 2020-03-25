@@ -24,17 +24,17 @@ class GamePage extends StatelessWidget {
       children: <Widget>[
         CardWidget(
           title: "Trivia",
-          image: NetworkImage('https://www.vivus.ge/axali-ambebi/wp-content/uploads/Quizzes1-1024x683.jpg'),
+          image: AssetImage('assets/img/game-1.jpg'),
           page: "trivia_page",
         ),
         CardWidget(
           title: "Separa la basura",
-          image: NetworkImage('https://www.sabermassantafe.com/wp-content/files_mf/153683602702113.jpg'),
+          image: AssetImage('assets/img/game-2.jpg'),
           page: "arrastrar_page",
         ),
         CardWidget(
           title: "Rompecabezas",
-          image: NetworkImage('https://images7.alphacoders.com/419/thumb-1920-419726.jpg'),
+          image: AssetImage('assets/img/game-3.jpg'),
           page: "rompecabezas_page",
         ),
       ],
