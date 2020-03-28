@@ -13,6 +13,11 @@ class _TriviaPageState extends State<TriviaPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      appBar: AppBar(
+        backgroundColor: Colors.green,
+        centerTitle: true,
+        title: Text('¿Qué tanto sabes?'),
+      ),
       body: ListView(
         children: <Widget>[
           SizedBox(height: 10.0),
@@ -197,9 +202,9 @@ class _TriviaPageState extends State<TriviaPage> {
 
   _comprobarRespuestas(){
     if (_respuestaPregunta1 == 2 && _respuestaPregunta2 == 1 && _respuestaPregunta3 == 3){
-      _mostrarAlert(context, "¡Felicidades!", "Tus respuestas son correctas ;)");
+      _mostrarAlert(context, "¡Felicidades!", "Tus respuestas son correctas 😎");
     } else {
-      _mostrarAlert(context, "Oh no!", "Vuelve a intentarlo :s");
+      _mostrarAlert(context, "Oh no!", "Vuelve a intentarlo 😱");
     }
   }
 
