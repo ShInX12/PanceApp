@@ -1,6 +1,6 @@
-# triva_app
+# Pance App
 
-A new Flutter project.
+Una aplicación para los turistas de Pance, con ella podrás divertirte y aprender datos curiosos sobre Pance.
 
 ## Getting Started
 
