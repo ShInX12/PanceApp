@@ -6,7 +6,7 @@ import 'package:triva_app/src/pages/login_page.dart';
 import 'package:triva_app/src/pages/map_page.dart';
 import 'package:triva_app/src/pages/navigation_base.dart';
 import 'package:triva_app/src/pages/register_page.dart';
-import 'package:triva_app/src/pages/rompecabezas_page.dart';
+import 'package:triva_app/src/pages/rompecabezas_base.dart';
 import 'package:triva_app/src/pages/trivia_page.dart';
 
 void main() async {
@@ -31,7 +31,7 @@ class MyApp extends StatelessWidget {
         'map'              : (BuildContext context) => MapPage(),
         'trivia_page'      : (BuildContext context) => TriviaPage(),
         'arrastrar_page'   : (BuildContext context) => ArrastrarPage(),
-        'rompecabezas_page': (BuildContext context) => RompecabezasPage(),
+        'rompecabezas_base': (BuildContext context) => RompecabezasBase(),
       },
     );
   }

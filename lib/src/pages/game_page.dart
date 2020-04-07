@@ -35,7 +35,7 @@ class GamePage extends StatelessWidget {
         CardWidget(
           title: "Rompecabezas",
           image: AssetImage('assets/img/game-3.jpg'),
-          page: "rompecabezas_page",
+          page: "rompecabezas_base",
         ),
       ],
     );
