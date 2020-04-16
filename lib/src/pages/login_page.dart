@@ -2,13 +2,19 @@
 // import 'package:ecommerce_ecom/src/shared_preferences/user_preferences.dart';
 // import 'package:ecommerce_ecom/src/utils/utils.dart';
 import 'package:flutter/material.dart';
+import 'package:triva_app/src/providers/user_provider.dart';
+import 'package:triva_app/src/widgets/mostrar_alerta.dart';
 // import 'package:ecommerce_ecom/src/blocs/usuarios/login_bloc.dart';
 // import 'package:ecommerce_ecom/src/blocs/provider.dart';
 
 class LoginPage extends StatelessWidget {
   static final String routeName = 'login';
-  // final userProvider = new UserProvider();
+  final userProvider = new UserProvider();
   // final prefs = UserPreference();
+
+  String email;
+  String password;
+
   @override
   Widget build(BuildContext context) {
     // prefs.lastPage = routeName;
@@ -31,7 +37,7 @@ class LoginPage extends StatelessWidget {
         children: <Widget>[
           SafeArea(child: Container()),
           Container(
-            width: size.width * 0.85,
+            width: size.width * 0.9,
             margin: EdgeInsets.symmetric(vertical: size.height * 0.07),
             padding: EdgeInsets.symmetric(vertical: 50.0),
             decoration: BoxDecoration(
@@ -47,12 +53,10 @@ class LoginPage extends StatelessWidget {
             ),
             child: Column(
               children: <Widget>[
-                Container(
-                    // padding: EdgeInsets.symmetric(vertical: 10.0),
-                    width: 100.0,
-                    height: 100.0,
-                    child: Text('(logo)')),
-                SizedBox(height: 30.0),
+                Image(
+                  image: AssetImage('assets/img/logo.png'),
+                  height: size.width * 0.5,
+                ),
                 _crearEmail(),
                 SizedBox(height: 30.0),
                 _crearPassword(),
@@ -60,7 +64,7 @@ class LoginPage extends StatelessWidget {
                 _crearBoton(context),
                 SizedBox(height: 20.0),
                 FlatButton(
-                  onPressed: () => {},
+                  onPressed: () => Navigator.pushNamed(context, 'password'),
                   child: Text('¿Olvidó la contraseña?'),
                 ),
                 FlatButton(
@@ -85,6 +89,7 @@ class LoginPage extends StatelessWidget {
           hintText: 'ejemplo@correo.com',
           labelText: 'Correo Electrónico',
         ),
+        onChanged: (val) => email = val,
       ),
     );
   }
@@ -98,6 +103,7 @@ class LoginPage extends StatelessWidget {
           icon: Icon(Icons.lock_outline, color: Colors.green),
           labelText: 'Contraseña',
         ),
+        onChanged: (val) => password = val,
       ),
     );
   }
@@ -113,7 +119,7 @@ class LoginPage extends StatelessWidget {
       color: Colors.green,
       textColor: Colors.white,
       onPressed: () {
-        Navigator.pushReplacementNamed(context, 'base');
+        _login(email, password, context);
       },
     );
   }
@@ -185,5 +191,15 @@ class LoginPage extends StatelessWidget {
         // )
       ],
     );
+  }
+
+  _login(String email, String password, BuildContext context) async {
+    Map respuesta = await userProvider.login(email, password);
+
+    if (respuesta["code"] == 200){
+      Navigator.pushReplacementNamed(context, 'base');
+    } else {
+      mostrarALerta(context, 'Vuelve a intentarlo', respuesta["message"]);
+    }
   }
 }

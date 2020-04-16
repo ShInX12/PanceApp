@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:triva_app/src/providers/user_provider.dart';
 import 'package:triva_app/src/widgets/form_widget.dart';
+import 'package:triva_app/src/widgets/mostrar_alerta.dart';
 
 class RegisterPage extends StatefulWidget {
   static final routeName = 'register';
@@ -10,14 +12,11 @@ class RegisterPage extends StatefulWidget {
 }
 
 class _RegisterPageState extends State<RegisterPage> {
-  String email = "";
-  String name = "";
-  String document = "";
+  final userProvider = new UserProvider();
+
+  String nombre = "";
   String telefono = "";
-  String direccion = "";
-  String password = "";
-  String project;
-  String documentType;
+  String email = "";
 
   final GlobalKey<ScaffoldState> _key = GlobalKey<ScaffoldState>();
 
@@ -27,36 +26,25 @@ class _RegisterPageState extends State<RegisterPage> {
       key: _key,
       resizeToAvoidBottomInset: true,
       appBar: AppBar(
-        backgroundColor: Colors.white,
+        backgroundColor: Colors.green,
         centerTitle: true,
-        title: Text(
-          'Registro',
-          style: TextStyle(
-            fontWeight: FontWeight.w700,
-            fontSize: 16.0,
-            color: Colors.black54,
-            fontFamily: "Gotik",
-          ),
-        ),
-        iconTheme: IconThemeData(
-          color: Color(0xFF6991C7),
-        ),
+        title: Text('Registro'),
       ),
       body: SingleChildScrollView(
         child: Container(
           padding: EdgeInsets.symmetric(horizontal: 15.0),
           child: Column(
             children: <Widget>[
-              Padding( padding: EdgeInsets.symmetric(vertical: 10.0, horizontal: 10.0),),
+              Padding(
+                padding: EdgeInsets.symmetric(vertical: 10.0, horizontal: 10.0),
+              ),
               _nameText(),
               Padding(padding: EdgeInsets.symmetric(vertical: 10.0)),
               _phoneText(),
               Padding(padding: EdgeInsets.symmetric(vertical: 10.0)),
               _emailText(),
-              Padding(padding: EdgeInsets.symmetric(vertical: 10.0)),
-              _passwordText(),
-              Padding(padding: EdgeInsets.symmetric(vertical: 20.0)),
-              _registerButton()
+              Padding(padding: EdgeInsets.symmetric(vertical: 12.0)),
+              _registerButton(),
             ],
           ),
         ),
@@ -67,52 +55,58 @@ class _RegisterPageState extends State<RegisterPage> {
   Widget _nameText() {
     return FormWidget(
       titulo: "Nombre",
-      subTitle: "",
-      onChanged: (val) => name = val,
+      onChanged: (val) => nombre = val,
       icon: Icon(Icons.people, color: Colors.green),
+      textInputType: TextInputType.text,
     );
   }
 
   Widget _phoneText() {
     return FormWidget(
       titulo: "Teléfono",
-      subTitle: "",
-      onChanged: (val) => name = val,
+      onChanged: (val) => telefono = val,
       icon: Icon(Icons.phone, color: Colors.green),
+      textInputType: TextInputType.phone,
     );
   }
 
   Widget _emailText() {
     return FormWidget(
       titulo: "Correo Electrónico",
-      subTitle: "preaba@example",
+      subTitle: "ejemplo@correo.com",
       onChanged: (val) => email = val,
       icon: Icon(Icons.email, color: Colors.green),
-    );
-  }
-
-  Widget _passwordText() {
-    return FormWidget(
-      titulo: "Contraseña",
-      subTitle: "",
-      onChanged: (val) => password = val,
-      icon: Icon(Icons.lock, color: Colors.green),
+      textInputType: TextInputType.emailAddress,
     );
   }
 
   Widget _registerButton() {
+    final size = MediaQuery.of(context).size;
     return RaisedButton(
       child: Container(
-        padding: EdgeInsets.symmetric(horizontal: 100.0, vertical: 15.0),
-        child: Text('Registrarse'),
+        width: size.width * 0.9,
+        height: 55.0,
+        child: Center(child: Text('Registrarse')),
       ),
       shape: StadiumBorder(),
       elevation: 1.0,
       color: Colors.green,
       textColor: Colors.white,
-      onPressed: () {
-        
-      },
+      onPressed: () => _registrarUsuario(email, nombre, telefono),
     );
+  }
+
+  _registrarUsuario(String email, String nombre, String telefono) async {
+    Map respuesta = await userProvider.nuevoUsuario(email, nombre, telefono);
+
+    if (respuesta.containsKey('id')) {
+      mostrarALerta(context, 'Usuario registrado correctamente',
+          'se ha enviado la contraseña a tu correo electrónico para que puedas iniciar sesión');
+    } else if (respuesta.containsKey('error')) {
+      mostrarALerta(context, 'Vuelve a intentarlo', respuesta['error']);
+    } else {
+      mostrarALerta(context, 'Vuelve a intentarlo',
+          'Es probable que el correo ya esté registrado');
+    }
   }
 }

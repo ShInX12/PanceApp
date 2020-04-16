@@ -3,10 +3,11 @@ import 'package:flutter/material.dart';
 class FormWidget extends StatelessWidget {
   final String titulo;
   final String subTitle;
-  final Function onChanged;
   final Icon icon;
+  final TextInputType textInputType;
+  final Function onChanged;
 
-  FormWidget({this.titulo, this.subTitle, this.onChanged, this.icon});
+  FormWidget({this.titulo, this.subTitle, this.onChanged, this.icon, this.textInputType});
 
   @override
   Widget build(BuildContext context) {
@@ -23,13 +24,12 @@ class FormWidget extends StatelessWidget {
       ),
       validator: (val) {
         if (val.length == 0) {
-          return "El correo no puede estar vacío";
+          return "Los campos no pueden estar vacíos";
         } else {
           return null;
         }
       },
-      keyboardType: TextInputType.emailAddress,
-      style: new TextStyle(fontFamily: "Poppins"),
+      keyboardType: textInputType,
       onChanged: onChanged,
     );
   }
